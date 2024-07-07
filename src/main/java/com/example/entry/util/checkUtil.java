@@ -80,6 +80,7 @@ public class checkUtil {
             }
             fileWriter.write(stringBuilder.toString());
             fileWriter.close();
+            log.info("Successfully stored the file in location: {}",fileLocation);
             Map<String, String> successResponse = new HashMap<>();
             successResponse.put("file", request.getFile());
             successResponse.put("message", "Success.");
