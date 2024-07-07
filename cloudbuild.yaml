@@ -1,6 +1,6 @@
 steps:
-  - name: eclipse-temurin:17-jdk
-    entrypoint: mvn
+  - name: 'maven'
+    entrypoint: 'mvn'
     args: ['clean','install','-DskipTests']
     id: test
 #  - name: eclipse-temurin:17-jdk
