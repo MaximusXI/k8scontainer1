@@ -13,7 +13,7 @@ steps:
   - name: "gcr.io/cloud-builders/gke-deploy"
     args:
       - run
-      - --filename=./deployment1.yml
+      - --filename=./container1deployment/
 #      - --filename=./service1.yml
 #      - --filename=./persistantvolume.yml
 #      - --filename=./persistantvolumeclaim.yml
