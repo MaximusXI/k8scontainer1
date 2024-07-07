@@ -13,7 +13,7 @@ steps:
   - name: "gcr.io/cloud-builders/gke-deploy"
     args:
       - run
-      - --filename=/home/harshilmakwana2023/container1
+      - --filename=gs://home/harshilmakwana2023/container1/
       - --location=us-central1-c
       - --cluster=cluster-assignment-3
 options:
