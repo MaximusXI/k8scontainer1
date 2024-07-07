@@ -1,0 +1,11 @@
+steps:
+  - name: eclipse-temurin:17-jdk
+    entrypoint: mvn
+    args: ['clean','install','-DskipTests']
+    id: test
+#  - name: eclipse-temurin:17-jdk
+#    entrypoint: mvn
+#    args: [ 'package','-Dmaven.test.skip=true' ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/assignment3-428215/k8srepository/container1', '.']
+
