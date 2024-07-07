@@ -10,10 +10,12 @@ steps:
     args: ['build', '-t', 'us-central1-docker.pkg.dev/assignment3-428215/k8srepository/container1', '.']
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-central1-docker.pkg.dev/assignment3-428215/k8srepository/container1']
+  - name: 'gcr.io/cloud-builders/gsutil'
+    args: [ 'cp', '-r', 'gs://home/harshilmakwana2023/container1/', '.' ]
   - name: "gcr.io/cloud-builders/gke-deploy"
     args:
       - run
-      - --filename=gs://home/harshilmakwana2023/container1/
+      - --filename=./container1/
       - --location=us-central1-c
       - --cluster=cluster-assignment-3
 options:
