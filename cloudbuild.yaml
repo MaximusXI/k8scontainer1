@@ -14,6 +14,9 @@ steps:
     args:
       - run
       - --filename=./deployment1.yml
+      - --filename=./service1.yml
+      - --filename=./persistantvolume.yml
+      - --filename=./persistantvolumeclaim.yml
       - --location=us-central1-c
       - --cluster=cluster-assignment-3
 options:
