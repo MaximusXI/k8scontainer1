@@ -64,8 +64,11 @@ public class checkUtil {
 
     }
 
-    public static Map<String, String> storeFile(FileRequest request,String fileLocation) {
+    public static Map<String, String> storeFile(FileRequest request,String fileLocation) throws ServiceException {
         log.info("Entered into storeFile method inside the checkUtil");
+        if(Objects.isNull(request.getFile())){
+            throw new ServiceException(HttpStatus.BAD_REQUEST, request.getFile(),"Invalid JSON input.");
+        }
         String fileName = request.getFile();
         String data = request.getData();
         log.info("The fileLocation in properties File is: {}", fileLocation);
