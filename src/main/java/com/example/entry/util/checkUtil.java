@@ -21,6 +21,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -64,10 +65,13 @@ public class checkUtil {
 
     }
 
-    public static Map<String, String> storeFile(FileRequest request,String fileLocation) throws ServiceException {
+    public static Map<String, String> storeFile(FileRequest request,String fileLocation) {
         log.info("Entered into storeFile method inside the checkUtil");
         if(Objects.isNull(request.getFile())){
-            throw new ServiceException(HttpStatus.BAD_REQUEST, request.getFile(),"Invalid JSON input.");
+            Map<String,String> errorInfo = new LinkedHashMap<>();
+            errorInfo.put("file",null);
+            errorInfo.put("error","Invalid JSON input.");
+            return errorInfo;
         }
         String fileName = request.getFile();
         String data = request.getData();

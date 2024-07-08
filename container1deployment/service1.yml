@@ -7,7 +7,7 @@ spec:
     app: container1
   ports:
     - protocol: TCP
-      port: 6000
+      port: 80
       targetPort: 6000
   type: LoadBalancer
 
