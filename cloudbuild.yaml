@@ -19,13 +19,11 @@ steps:
 #      - --filename=./persistantvolumeclaim.yml
       - --location=us-central1-c
       - --cluster=cluster-assignment-3
-  - name: 'google/cloud-sdk:latest'
-    entrypoint: 'sh'
+  - name: "gcr.io/cloud-builders/kubectl"
     args:
-      - -xe
-      - -c
-      - |
-        gcloud deploy apply --file ./container1deployment/deployment1.yaml --region=us-central1-c
+      - "apply"
+      - "-f"
+      - "./container2deployment/"
 options:
   logging: CLOUD_LOGGING_ONLY
 
