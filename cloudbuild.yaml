@@ -14,12 +14,18 @@ steps:
     args:
       - run
       - --filename=./container1deployment/
-      - --filename=./container1deployment/deployment1.yml
 #      - --filename=./service1.yml
 #      - --filename=./persistantvolume.yml
 #      - --filename=./persistantvolumeclaim.yml
       - --location=us-central1-c
       - --cluster=cluster-assignment-3
+  - name: 'google/cloud-sdk:latest'
+    entrypoint: 'sh'
+    args:
+      - -xe
+      - -c
+      - |
+        gcloud deploy apply --file container1deployment/deployment1.yaml --region=us-central1-c
 options:
   logging: CLOUD_LOGGING_ONLY
 
