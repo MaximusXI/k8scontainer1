@@ -25,7 +25,7 @@ steps:
       - "-f"
       - "./container2deployment/"
       - "-c"
-      - "cluster=cluster-assignment-3"
+      - "cluster-assignment-3"
       - "l"
       - "us-central1-c"
 options:
