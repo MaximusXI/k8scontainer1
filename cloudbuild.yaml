@@ -26,7 +26,7 @@ steps:
       - "./container2deployment/"
       - "-c"
       - "cluster-assignment-3"
-      - "l"
+      - "-l"
       - "us-central1-c"
 options:
   logging: CLOUD_LOGGING_ONLY
