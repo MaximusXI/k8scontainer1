@@ -7,9 +7,9 @@ steps:
 #    entrypoint: mvn
 #    args: [ 'package','-Dmaven.test.skip=true' ]
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'us-central1-docker.pkg.dev/assignment3-428215/k8srepository/container1', '.']
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/assignment3-428215/k8srepository/container1:${SHORT_SHA}', '.']
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'us-central1-docker.pkg.dev/assignment3-428215/k8srepository/container1']
+    args: ['push', 'us-central1-docker.pkg.dev/assignment3-428215/k8srepository/container1${SHORT_SHA}']
   - name: "gcr.io/cloud-builders/gke-deploy"
     args:
       - run
@@ -24,10 +24,8 @@ steps:
       - "apply"
       - "-f"
       - "./container2deployment/"
-      - "-c"
-      - "cluster-assignment-3"
-      - "-l"
-      - "us-central1-c"
+      - --location=us-central1-c
+      - --cluster=cluster-assignment-3
 options:
   logging: CLOUD_LOGGING_ONLY
 
