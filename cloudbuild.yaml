@@ -18,15 +18,15 @@ steps:
     args: ['push', 'us-central1-docker.pkg.dev/assignment3-428215/k8srepository/container1']
     id: push image
   #Below build step cleans up any old deployment if it exists
-  - name: "gcr.io/cloud-builders/kubectl"
-    args:
-      - "delete"
-#      - "--all"
-      - "deployment.apps/container1-deployment"
-    env:
-      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
-      - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-assignment-3'
-    id: cleanup old deployment
+#  - name: "gcr.io/cloud-builders/kubectl"
+#    args:
+#      - "delete"
+##      - "--all"
+#      - "deployment.apps/container1-deployment"
+#    env:
+#      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
+#      - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-assignment-3'
+#    id: cleanup old deployment
   #Below build step deploys the latest deployment
   - name: "gcr.io/cloud-builders/gke-deploy"
     args:
