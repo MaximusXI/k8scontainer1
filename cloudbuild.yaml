@@ -11,14 +11,14 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-central1-docker.pkg.dev/assignment3-428215/k8srepository/container1']
   - name: "gcr.io/cloud-builders/gke-deploy"
-    args: ['apply','-f ./container1deployment/','--location=us-central1-c','--cluster=cluster-assignment-3']
-      #- run
-     # - --filename=./container1deployment/
+    args:
+      - run
+      - --filename=./container1deployment/
 #      - --filename=./service1.yml
 #      - --filename=./persistantvolume.yml
 #      - --filename=./persistantvolumeclaim.yml
-     # - --location=us-central1-c
-      #- --cluster=cluster-assignment-3
+      - --location=us-central1-c
+      - --cluster=cluster-assignment-3
 options:
   logging: CLOUD_LOGGING_ONLY
 
