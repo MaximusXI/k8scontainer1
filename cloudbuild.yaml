@@ -25,7 +25,7 @@ steps:
       - -xe
       - -c
       - |
-        gcloud deploy apply --file container1deployment/deployment1.yaml --region=us-central1-c
+        gcloud deploy apply --file ./container1deployment/deployment1.yaml --region=us-central1-c
 options:
   logging: CLOUD_LOGGING_ONLY
 
