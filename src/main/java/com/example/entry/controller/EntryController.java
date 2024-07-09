@@ -33,7 +33,7 @@ public class EntryController {
     @PostMapping("store-file")
     public ResponseEntity<Map<String,String>> storeFileData(@RequestBody FileRequest request) throws Exception {
         System.out.println(secondServiceUrl);
-        log.info("A simple log 2");
+        log.info("A simple log updated");
         log.info("Inside the EntryController in the store-file endpoint");
         log.info("The second service url is: {}", secondServiceUrl);
         Map<String,String> result = checkUtil.storeFile(request,fileLocation);
