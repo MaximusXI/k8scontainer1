@@ -1,21 +1,23 @@
 steps:
+  #Below build step cleans up the target folder
   - name: 'maven'
     entrypoint: 'mvn'
     args: ['clean']
     id: clean
+  #Below build step generates the JAR and dependencies files
   - name: 'maven'
     entrypoint: 'mvn'
     args: [ 'install','-DskipTests' ]
     id: install
-#  - name: eclipse-temurin:17-jdk
-#    entrypoint: mvn
-#    args: [ 'package','-Dmaven.test.skip=true' ]
+  #Below build step builds the docker image
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'us-central1-docker.pkg.dev/assignment3-428215/k8srepository/container1', '.']
     id: build image
+  #Below build step push the image to the artifact registry
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-central1-docker.pkg.dev/assignment3-428215/k8srepository/container1']
     id: push image
+  #Below build step cleans up any old deployment if it exists
   - name: "gcr.io/cloud-builders/kubectl"
     args:
       - "delete"
@@ -25,24 +27,14 @@ steps:
       - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
       - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-assignment-3'
     id: cleanup old deployment
+  #Below build step deploys the latest deployment
   - name: "gcr.io/cloud-builders/gke-deploy"
     args:
       - run
       - --filename=./container1deployment/
-#      - --filename=./service1.yml
-#      - --filename=./persistantvolume.yml
-#      - --filename=./persistantvolumeclaim.yml
       - --location=us-central1-c
       - --cluster=cluster-assignment-3
     id: deploy
-#  - name: "gcr.io/cloud-builders/kubectl"
-#    args:
-#      - "apply"
-#      - "-f"
-#      - "./container2deployment/"
-#    env:
-#      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
-#      - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-assignment-3'
 options:
   logging: CLOUD_LOGGING_ONLY
 
