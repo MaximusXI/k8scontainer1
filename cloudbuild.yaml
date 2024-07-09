@@ -22,7 +22,8 @@ steps:
     args:
       - "delete"
 #      - "--all"
-      - "deployment.apps/container1-deployment || true"
+      - "deployment.apps/container1-deployment"
+      - "--ignore-not-found"
     env:
       - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
       - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-assignment-3'
