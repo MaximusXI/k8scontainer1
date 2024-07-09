@@ -14,6 +14,7 @@ steps:
     args:
       - run
       - --filename=./container1deployment/
+      - --filename=./container1deployment/deployment1.yml
 #      - --filename=./service1.yml
 #      - --filename=./persistantvolume.yml
 #      - --filename=./persistantvolumeclaim.yml
