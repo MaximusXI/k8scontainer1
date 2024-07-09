@@ -10,6 +10,14 @@ steps:
     args: ['build', '-t', 'us-central1-docker.pkg.dev/assignment3-428215/k8srepository/container1:${SHORT_SHA}', '.']
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-central1-docker.pkg.dev/assignment3-428215/k8srepository/container1:${SHORT_SHA}']
+  - name: "gcr.io/cloud-builders/kubectl"
+    args:
+      - "delete"
+      - "-f"
+      - "./container2deployment/"
+    env:
+      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-assignment-3'
   - name: "gcr.io/cloud-builders/gke-deploy"
     args:
       - run
