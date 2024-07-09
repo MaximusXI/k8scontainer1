@@ -2,7 +2,7 @@ steps:
   - name: 'maven'
     entrypoint: 'mvn'
     args: ['clean']
-    id: test
+    id: clean
   - name: 'maven'
     entrypoint: 'mvn'
     args: [ 'install','-DskipTests' ]
