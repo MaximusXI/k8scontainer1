@@ -12,8 +12,10 @@ steps:
 #    args: [ 'package','-Dmaven.test.skip=true' ]
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'us-central1-docker.pkg.dev/assignment3-428215/k8srepository/container1', '.']
+    id: build image
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-central1-docker.pkg.dev/assignment3-428215/k8srepository/container1']
+    id: push image
   - name: "gcr.io/cloud-builders/kubectl"
     args:
       - "delete"
@@ -22,6 +24,7 @@ steps:
     env:
       - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
       - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-assignment-3'
+    id: cleanup old deployment
   - name: "gcr.io/cloud-builders/gke-deploy"
     args:
       - run
@@ -31,6 +34,7 @@ steps:
 #      - --filename=./persistantvolumeclaim.yml
       - --location=us-central1-c
       - --cluster=cluster-assignment-3
+    id: deploy
 #  - name: "gcr.io/cloud-builders/kubectl"
 #    args:
 #      - "apply"
