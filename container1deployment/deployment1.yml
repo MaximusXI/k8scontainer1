@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: container1
-        image: us-central1-docker.pkg.dev/assignment3-428215/k8srepository/container1
+        image: us-central1-docker.pkg.dev/assignment3-428215/k8srepository/container1:latest
         imagePullPolicy: Always
         ports:
           - containerPort: 6000
