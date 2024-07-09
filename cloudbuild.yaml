@@ -19,14 +19,10 @@ steps:
     id: push image
   #Below build step cleans up any old deployment if it exists
   - name: "gcr.io/cloud-builders/kubectl"
-    entrypoint: "bash"
     args:
-      - "-c"
-      - |
-        kubectl delete deployment.apps/container1-deployment || true
-    #      - "delete"
-##      - "--all"
-#      - "deployment.apps/container1-deployment"
+      - "delete"
+#      - "--all"
+      - "deployment.apps/container1-deployment || true"
     env:
       - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
       - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-assignment-3'
