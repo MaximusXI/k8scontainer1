@@ -22,7 +22,8 @@ steps:
     entrypoint: "bash"
     args:
       - "-c"
-      - "| kubectl delete deployment.apps/container1-deployment || true"
+      - |
+        kubectl delete deployment.apps/container1-deployment || true
     #      - "delete"
 ##      - "--all"
 #      - "deployment.apps/container1-deployment"
